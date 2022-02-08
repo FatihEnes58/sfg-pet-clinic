@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-@MappedSuperclass
+@MappedSuperclass // Bu databese'de yok ama inherit edilecek
 public class BaseEntity implements Serializable {
 
   @Id
