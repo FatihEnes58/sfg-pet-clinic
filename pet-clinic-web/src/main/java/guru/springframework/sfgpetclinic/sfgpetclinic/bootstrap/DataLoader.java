@@ -5,10 +5,13 @@ import guru.springframework.sfgpetclinic.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.sfgpetclinic.model.PetType;
 import guru.springframework.sfgpetclinic.sfgpetclinic.model.Speciality;
 import guru.springframework.sfgpetclinic.sfgpetclinic.model.Vet;
+import guru.springframework.sfgpetclinic.sfgpetclinic.model.Visit;
 import guru.springframework.sfgpetclinic.sfgpetclinic.services.OwnerService;
+import guru.springframework.sfgpetclinic.sfgpetclinic.services.PetService;
 import guru.springframework.sfgpetclinic.sfgpetclinic.services.PetTypeService;
 import guru.springframework.sfgpetclinic.sfgpetclinic.services.SpecialityService;
 import guru.springframework.sfgpetclinic.sfgpetclinic.services.VetService;
+import guru.springframework.sfgpetclinic.sfgpetclinic.services.VisitService;
 import java.time.LocalDate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -20,17 +23,22 @@ public class DataLoader implements CommandLineRunner {
   private final VetService vetService;
   private final PetTypeService petTypeService;
   private final SpecialityService specialityService;
+  private final VisitService visitService;
+  private final PetService petService;
 
   public DataLoader(
       OwnerService ownerService,
       VetService vetService,
       PetTypeService petTypeService,
-      SpecialityService specialityService) {
+      SpecialityService specialityService,
+      VisitService visitService, PetService petService) {
 
     this.ownerService = ownerService;
     this.vetService = vetService;
     this.petTypeService = petTypeService;
     this.specialityService = specialityService;
+    this.visitService = visitService;
+    this.petService = petService;
   }
 
   @Override
@@ -65,6 +73,8 @@ public class DataLoader implements CommandLineRunner {
 
     Pet fionasCat = createPet(cat, owner2, "Just Cat");
     owner2.getPets().add(fionasCat);
+
+    Visit catVisit = createVisit(fionasCat, "Sneezy Kitty");
 
     Speciality radiology = createSpeciality("Radiology");
     Speciality surgery = createSpeciality("Surgery");
@@ -113,6 +123,8 @@ public class DataLoader implements CommandLineRunner {
     pet.setOwner(owner);
     pet.setName(name);
 
+    petService.save(pet);
+
     return pet;
   }
 
@@ -120,6 +132,15 @@ public class DataLoader implements CommandLineRunner {
     Speciality speciality = new Speciality();
     speciality.setDescription(description);
     return specialityService.save(speciality);
+  }
+
+  private Visit createVisit(Pet pet, String description) {
+    Visit visit = new Visit();
+    visit.setDescription(description);
+    visit.setDate(LocalDate.now());
+    visit.setPet(pet);
+    visitService.save(visit);
+    return visit;
   }
 
 }
