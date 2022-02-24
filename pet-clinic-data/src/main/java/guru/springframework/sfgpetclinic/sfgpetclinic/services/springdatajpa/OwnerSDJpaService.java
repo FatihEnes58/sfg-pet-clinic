@@ -6,7 +6,6 @@ import guru.springframework.sfgpetclinic.sfgpetclinic.repositories.PetRepository
 import guru.springframework.sfgpetclinic.sfgpetclinic.repositories.PetTypeRepository;
 import guru.springframework.sfgpetclinic.sfgpetclinic.services.OwnerService;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;

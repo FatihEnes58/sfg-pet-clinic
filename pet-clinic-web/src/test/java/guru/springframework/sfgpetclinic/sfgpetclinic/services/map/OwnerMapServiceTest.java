@@ -1,9 +1,10 @@
 package guru.springframework.sfgpetclinic.sfgpetclinic.services.map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import guru.springframework.sfgpetclinic.sfgpetclinic.model.Owner;
-import guru.springframework.sfgpetclinic.sfgpetclinic.services.PetTypeService;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
