@@ -5,6 +5,7 @@ import guru.springframework.sfgpetclinic.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.sfgpetclinic.services.PetService;
 import guru.springframework.sfgpetclinic.sfgpetclinic.services.PetTypeService;
+import java.util.List;
 import java.util.Set;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -77,4 +78,10 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements
           .findFirst()
           .orElse(null);
     }
+
+  @Override
+  public List<Owner> findAllByLastNameLike(String anyString) {
+    //todo - impl
+    return null;
   }
+}
